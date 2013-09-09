@@ -138,7 +138,8 @@ if ( !isset( $current_site ) || !isset( $current_blog ) ) {
 	// @todo Investigate when exactly this can occur.
 	if ( empty( $current_blog ) && wp_installing() ) {
 		$current_blog = new stdClass;
-		$current_blog->blog_id = $blog_id = 1;
+		// in multisite, the main blog may not be always the first one!!
+		$current_blog->blog_id = $blog_id = ( defined('BLOG_ID_CURRENT_SITE') ? BLOG_ID_CURRENT_SITE : 1 )  ;
 	}
 
 	// No site has been found, bail.
