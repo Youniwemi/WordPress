@@ -115,7 +115,8 @@ if ( !isset( $current_site ) || !isset( $current_blog ) ) {
 
 	if ( ! $blog_id ) {
 		if ( defined( 'WP_INSTALLING' ) ) {
-			$current_blog->blog_id = $blog_id = 1;
+			// in multisite, the main blog may not be always the first one!!
+			$current_blog->blog_id = $blog_id = ( defined('BLOG_ID_CURRENT_SITE') ? BLOG_ID_CURRENT_SITE : 1 ) ;
 		} else {
 			wp_load_translations_early();
 			$msg = ! $wpdb->get_var( "SHOW TABLES LIKE '$wpdb->site'" ) ? ' ' . __( 'Database tables are missing.' ) : '';
