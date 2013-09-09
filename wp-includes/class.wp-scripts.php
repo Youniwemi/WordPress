@@ -119,10 +119,12 @@ class WP_Scripts extends WP_Dependencies {
 
 		$src = esc_url( apply_filters( 'script_loader_src', $src, $handle ) );
 
-		if ( $this->do_concat )
-			$this->print_html .= "<script type='text/javascript' src='$src'></script>\n";
-		else
-			echo "<script type='text/javascript' src='$src'></script>\n";
+		if ( $src ){ // unfixed bug, IF src is empty, don't show script tag
+			if ( $this->do_concat )
+				$this->print_html .= "<script type='text/javascript' src='$src'></script>\n";
+			else
+				echo "<script type='text/javascript' src='$src'></script>\n";
+		}
 
 		return true;
 	}
