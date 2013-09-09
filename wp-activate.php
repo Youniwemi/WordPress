@@ -7,6 +7,8 @@
  */
 
 define( 'WP_INSTALLING', true );
+// defined to let enable plugin loading ( so plugin hooks and widgets can work.. )
+define( 'WP_USER_ACTIVATION', true );
 
 /** Sets up the WordPress Environment. */
 require( dirname(__FILE__) . '/wp-load.php' );
