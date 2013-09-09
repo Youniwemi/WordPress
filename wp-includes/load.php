@@ -504,7 +504,7 @@ function wp_get_active_and_valid_plugins() {
 		array_unshift( $plugins, ABSPATH . 'my-hacks.php' );
 	}
 
-	if ( empty( $active_plugins ) || defined( 'WP_INSTALLING' ) )
+	if ( empty( $active_plugins ) || ( defined( 'WP_INSTALLING' ) && !defined('WP_USER_ACTIVATION') ) )
 		return $plugins;
 
 	$network_plugins = is_multisite() ? wp_get_active_network_plugins() : false;
