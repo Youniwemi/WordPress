@@ -680,7 +680,8 @@ function wp_get_active_and_valid_plugins() {
 		array_unshift( $plugins, ABSPATH . 'my-hacks.php' );
 	}
 
-	if ( empty( $active_plugins ) || wp_installing() ) {
+	// Plugins should load in wp-activate ( as needed to execute hooks.. check if this patch is still needed next time
+	if ( empty( $active_plugins ) || ( wp_installing() && !defined('WP_USER_ACTIVATION') ) ) {
 		return $plugins;
 	}
 
